@@ -1,0 +1,43 @@
+{
+    "levelName": "Red",
+    "levelOrder": "Tutorial 2",
+    "Size": 5,
+    "spawnLocation": { "x": 0, "y": 4 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 18,
+
+    "Layout": [
+        [
+            { "Type": "Node", "subType": "Setter",  "Colour": "Red" }, 
+            {}, {}, 
+            { "Type": "Node", "subType": "Resetter" }, 
+            {}
+        ],
+
+        [
+            { "Type": "Wall" }, 
+            { "Type": "Wall" },  
+            {},  
+            { "Type": "Wall" }, 
+            { "Type": "Wall", "Colour": "Red" }
+        ],
+
+        [ 
+            {}, {}, {},
+            { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "End" } 
+        ],
+        
+        [ 
+            { "Type": "Wall" },
+            { "Type": "Wall" }, 
+            {},
+            { "Type": "Wall" }, 
+            { "Type": "Wall", "Colour": "Red" }
+        ],
+        
+        [
+            {}, {}, {}, {}, {}
+        ]
+    ]
+}

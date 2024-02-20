@@ -1,0 +1,98 @@
+{
+    "levelName": "Red & Blue",
+    "levelOrder": "Tutorial X",
+    "Size": 9,
+    "spawnLocation": { "x": 0, "y": 0 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 76,
+
+    "Layout": [
+        [
+            {}, {}, {}, {}, {}, {}, {}, {}, {}
+        ],
+
+        [
+            { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "Resetter" },
+            { "Type": "Wall" }, 
+            {}, 
+            { "Type": "Wall" }, 
+            { "Type": "Wall", "Colour": "Blue"}, 
+            { "Type": "Wall", "Colour": "Blue"}, 
+            { "Type": "Wall", "Colour": "Red"}, 
+            { "Type": "Wall", "Colour": "Red"}
+        ],
+
+        [ 
+            
+            {}, {}, {}, {},
+            { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "Resetter" },  
+            {}, {},
+            { "Type": "Node", "subType": "Resetter" }
+        ],
+        
+        [ 
+            {}, 
+            { "Type": "Wall" },
+            { "Type": "Node", "subType": "Resetter" }, 
+            { "Type": "Wall" },
+            { "Type": "Wall" }, 
+            { "Type": "Wall", "Colour": "Red"}, 
+            { "Type": "Wall", "Colour": "Red"}, 
+            { "Type": "Wall", "Colour": "Blue"}, 
+            { "Type": "Wall", "Colour": "Blue"}
+        ],
+        
+        [
+            {}, 
+            {}, 
+            {}, 
+            {}, 
+            { "Type": "Wall" },  
+            { "Type": "Node", "subType": "Resetter" },  
+            {}, {},
+            { "Type": "Node", "subType": "Resetter" }
+        ],
+
+        [
+            { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "Resetter" },
+            { "Type": "Wall" },
+            {}, 
+            { "Type": "Wall" }, 
+            { "Type": "Wall", "Colour": "Blue"}, 
+            { "Type": "Wall", "Colour": "Blue"}, 
+            { "Type": "Wall", "Colour": "Red"}, 
+            { "Type": "Wall", "Colour": "Red"}
+        ],
+
+        [
+            {}, {}, {}, {},
+            { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "Setter", "Colour": "Blue" },
+            {}, {}, 
+            { "Type": "Node", "subType": "Resetter" }
+        ],
+
+        [
+            { "Type": "Node", "subType": "Resetter" },
+            { "Type": "Wall" }, 
+            {}, 
+            { "Type": "Wall" },
+            { "Type": "Wall" }, 
+            { "Type": "Wall" },
+            { "Type": "Wall" }, 
+            { "Type": "Wall" }, 
+            { "Type": "Wall" }
+        ],
+
+        [
+            { "Type": "Node", "subType": "Setter", "Colour": "Red" }, 
+            {}, {}, {}, {}, 
+            { "Type": "Wall", "Colour": "Blue"}, 
+            {}, {}, 
+            { "Type": "Node", "subType": "End" }
+        ]
+    ]
+}

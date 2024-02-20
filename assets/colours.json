@@ -1,0 +1,58 @@
+{
+    "White": {
+        "Hex": "#ffffff",
+        "invertNeutralColour": true
+    },
+
+    "Black": {
+        "Hex": "#000000",
+        "invertNeutralColour": false
+    },
+
+    "Grey": {
+        "Hex": "#777777",
+        "invertNeutralColour": true
+    },
+
+    "Red": {
+        "Hex": "#ce3131",
+        "invertNeutralColour": true,
+        "mixWith": {
+            "Yellow": "Orange",
+            "Blue": "Purple"
+        }
+    },
+
+    "Blue": {
+        "Hex": "#3150ce",
+        "invertNeutralColour": true,
+        "mixWith": {
+            "Yellow": "Green",
+            "Red": "Purple"
+        }
+    },
+
+    "Yellow": {
+        "Hex": "#cec631",
+        "invertNeutralColour": true,
+        "mixWith": {
+            "Blue": "Green",
+            "Red": "Orange"
+        }
+    },
+
+    "Green": {
+        "Hex": "#36ce31",
+        "invertNeutralColour": true
+    },
+
+    "Purple": {
+        "Hex": "#be31ce",
+        "invertNeutralColour": true
+    },
+
+    "Orange": {
+        "Hex": "#e28928",
+        "invertNeutralColour": true
+    }
+}

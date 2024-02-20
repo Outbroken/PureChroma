@@ -1,0 +1,437 @@
+/* Fonts */
+
+@font-face {
+    font-family: 'Rubik-Regular';
+    src: url('fonts/Rubik/Rubik-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Variables */
+
+:root {
+    --Core-Font: 'Rubik-Regular';
+
+    --Text-Colour: #ffffff;
+    --Background-Colour: #0f1015;
+    --Primary-Colour: #00e5ff;
+    --Secondary-Colour: #1e202a;
+    --Accent-Colour: #d8683b;
+}
+
+/* Media Queries */
+
+/* Animations */
+
+@keyframes Bob {
+    from {
+      transform: translate(-50%, 7%);
+    }
+    to {
+      transform: translate(-50%, 0);
+    }
+}
+
+@keyframes BackgroundMovement {
+    from {
+      left: -10%;
+    }
+    to {
+      left: -5%;
+    }
+}
+
+
+@keyframes PlayButtonGlow {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+}
+
+/* Styling */
+
+html {
+    
+    background-color: var(--Background-Colour);
+    height: 100%;
+
+}
+
+
+
+#TitleScreen {
+    
+    transition-property: opacity;
+    transition-duration: 300ms;
+
+    padding: 0;
+
+}
+
+
+
+#TitleImage {
+
+    user-select: none;
+    position: absolute;
+    
+    margin-top: 0%;
+
+    left: 50%;
+
+    width: 50%;
+    height: 25.5%;
+
+    animation: 4s cubic-bezier(0.37, 0, 0.63, 1) 0s infinite alternate Bob;
+    transition-property: opacity;
+    transition-duration: 300ms;
+
+    object-fit: cover;
+    
+}
+
+
+#TitleBackgroundImage {
+
+    user-select: none;
+    position: fixed;
+
+    width: 115%;
+    height: 115%;
+
+    animation: 4s cubic-bezier(0.37, 0, 0.63, 1) 0s infinite alternate BackgroundMovement;
+    transition-property: opacity;
+    transition-duration: 300ms;
+
+}
+
+
+
+.ImportantButton {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 18%;
+    height: 8.5%;
+
+    transform: translate(-50%, -50%);
+
+
+    font-family: var(--Core-Font);
+    font-size: 2.75em;
+
+    border: none;
+    outline: none;
+
+    color: #777777;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+
+    z-index: 0;
+    border-radius: 10px;
+
+    transition-property: color, opacity;
+    transition-duration: 300ms;
+
+}
+
+.ImportantButton::before {
+    content: "";
+    
+    background: linear-gradient(
+      45deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000
+    );
+    
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: PlayButtonGlow 60s linear infinite;
+    transition: 300ms ease-in-out;
+    border-radius: 10px;
+}
+
+.ImportantButton::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+
+    transition: 300ms;
+}
+
+.ImportantButton:hover {
+
+    color: #ffffff;
+
+}
+
+.ImportantButton:hover::before {
+
+    top: -5px;
+    left: -5px;
+
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+
+}
+  
+.ImportantButton:active{
+  
+    background: #22222200;
+    color: #000000;
+
+}
+
+.ImportantButton:active::after {
+  
+    background: #22222200;
+
+}
+
+
+
+#LevelScreen {
+
+    transition-property: opacity;
+    transition-duration: 300ms;
+
+    visibility: collapse;
+    opacity: 0;
+
+}
+
+
+
+#LevelGridContainer {
+
+    background-color: #00000000;
+    
+    width: 42em;
+    height: 42em;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    overflow: hidden;
+    border-radius: 5%;
+
+}
+
+
+
+#LevelGrid {
+    
+    background-color: #ffffff00;
+    
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: baseline;
+
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-property: background-color;
+    transition-duration: 0.6s;
+
+}
+
+
+
+#LevelMoveCounter {
+
+    font-family: var(--Core-Font);
+    font-size: 3em;
+    color: var(--Text-Colour);
+
+    position: absolute;
+
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    user-select: none;
+
+    transition-property: color;
+    transition-duration: 300ms;
+
+}
+
+
+
+
+#LevelTitle {
+
+    font-family: var(--Core-Font);
+    font-size: 3.5em;
+    color: var(--Text-Colour);
+
+    position: absolute;
+
+    top: 1.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    user-select: none;
+
+}
+
+
+
+
+
+.Tile {
+
+    user-select: none;
+    background-color: #00000000;
+
+}
+
+
+
+.TileIcon {
+
+    user-select: none;
+
+    margin-left: 12.5%;
+    margin-top: 12.5%;
+    
+    width: 75%;
+    height: 75%;
+
+    display: inline-block;
+   
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-property: filter;
+    transition-duration: 0.6s;
+
+}
+
+
+
+.TileIconBackground {
+
+    margin-left: 18%;
+    margin-top: -74%;
+    
+    width: 65%;
+    height: 65%;
+    
+    border-radius: 100%;
+
+}
+
+
+
+#Player {
+    /* border affects sizing for whatever reason..*/
+    border-radius: 50%;
+    
+    background-color: #000000;
+    position: absolute;
+
+    user-select: none;
+
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-property: top, left, background-color;
+    transition-duration: 0.6s;
+
+}
+
+
+
+
+#LevelCompleteOverlay {
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #000000aa;
+    backdrop-filter: blur(10px) grayscale(100%);
+
+    visibility: collapse; 
+    opacity: 0;
+
+    transition-property: opacity;
+    transition-duration: 300ms;
+
+}
+
+
+
+#LevelCompleteMessage {
+
+    font-family: var(--Core-Font);
+    font-size: 4em;
+    color: var(--Text-Colour);
+
+    position: absolute;
+
+    margin: 0;
+
+    width: 40%;
+    height: 10%;
+
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    user-select: none;
+    text-align: center;
+
+}
+
+
+
+#ContinueButton {
+
+    margin-top: 3%;
+
+}
+
+
+
+#VersionIndicator {
+    font-family: var(--Core-Font);
+    font-size: 1em;
+    color: #ffffff50;
+
+    position: fixed;
+
+    left: 0.5%;
+    top: 95.5%;
+}

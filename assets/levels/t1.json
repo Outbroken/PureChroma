@@ -1,0 +1,42 @@
+{
+    "levelName": "Walls",
+    "levelOrder": "Tutorial 1",
+    "Size": 5,
+    "spawnLocation": { "x": 0, "y": 4 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 16,
+    
+    "Layout": [
+        [ 
+            {}, {}, {}, {}, {} 
+        ],
+ 
+        [
+            {}, 
+            { "Type": "Wall" }, 
+            { "Type": "Wall" },
+            { "Type": "Wall" }, 
+            {}
+        ],
+
+        [ 
+            {}, {}, {}, 
+            { "Type": "Wall" }, 
+            {} 
+        ],
+        
+        [ 
+            { "Type": "Wall" }, 
+            { "Type": "Wall" }, 
+            {}, 
+            { "Type": "Wall" }, 
+            {} 
+        ],
+        
+        [
+            {}, {}, {},
+            { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "End" }
+        ]
+    ]
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Chroma - Casey McLaughlin</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="webIcon.png">
+</head>
+<body>
+    <!-- Create the Website -->
+    <div id="TitleScreen">
+        <img id="TitleBackgroundImage" src="assets/images/TitleBackgroundImage.png"></img>
+        <img id="TitleImage" src="assets/images/TitleImage.png"></img>
+        <button id="PlayButton" class="ImportantButton">Play</button>
+    </div>
+
+    <div id="LevelScreen">
+        <p id="LevelTitle">Loading...</p>
+
+        <div id="LevelGridContainer">
+            <div id="Player"></div>
+            <div id="LevelGrid"></div>
+        </div>
+
+        <p id="LevelMoveCounter">Moves : 0/16</p>
+
+        <div id="LevelCompleteOverlay">
+            <p id="LevelCompleteMessage">That Was Pure Chroma!</p>
+            <button id="ContinueButton" class="ImportantButton">Continue?</button>
+        </div>
+    </div>
+
+    <p id="VersionIndicator"> Alpha v0.11 (Expect Bugs)</p>
+
+    <!-- Load Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
