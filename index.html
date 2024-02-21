@@ -19,16 +19,23 @@
 
     <div id="LevelScreen">
         <p id="LevelTitle">Loading...</p>
+        <p id="LevelDescription">(?) Reach the flag</p>
+
+        <p id="LevelMoveCounter">00/00</p>
+        <p id="LevelMoveCounter_Label">Moves</p>
+
+        <p id="LevelTimer">0:00.0</p>
+        <p id="LevelTimer_Label">Time</p>
 
         <div id="LevelGridContainer">
             <div id="Player"></div>
-            <div id="LevelGrid"></div>
+            <div id="LevelGrid"></div>   
         </div>
 
-        <p id="LevelMoveCounter">Moves : 0/16</p>
+        <button class="ImportantButton" id="RestartButton" >Restart</button>
 
         <div id="LevelCompleteOverlay">
-            <p id="LevelCompleteMessage">That Was Pure Chroma!</p>
+            <p id="LevelCompleteMessage">Level Complete!</p>
             <button id="ContinueButton" class="ImportantButton">Continue?</button>
         </div>
     </div>

@@ -1,10 +1,12 @@
 {
     "levelName": "Red & Blue",
     "levelOrder": "Tutorial X",
+    "levelDescription": "Use what you've learned to help",
     "Size": 9,
     "spawnLocation": { "x": 0, "y": 0 },
     "backgroundColour": "White",
     "perfectMoveCount": 76,
+    "perfectTime": 18000,
 
     "Layout": [
         [

@@ -19,6 +19,10 @@ var Level = {};
 var PosX = 0;
 var PosY = 0;
 
+var timerInterval;
+var timerBeganAt = 0;
+var timerDate = new Date(0);
+
 var playerColour;
 var inGame = false;
 
@@ -47,6 +51,49 @@ function Interface_UpdateMoveCount(Moves, perfectMoveCount) {
         document.getElementById("LevelMoveCounter").style.color = "#36ce31";
 
     }
+
+}
+
+
+
+function Interface_BeginTimer() {
+
+    if (timerBeganAt != 0 || inGame == false) { return; }
+
+    document.getElementById("LevelTimer").style.color = "#36ce31";
+
+    timerBeganAt = Date.now();
+    timerInterval = setInterval(Interface_UpdateTimer, 100);
+
+}
+
+
+
+function Interface_UpdateTimer() {
+
+    var timeDifference = Date.now() - timerBeganAt
+    timerDate.setTime(timeDifference);
+
+    if (timeDifference > Level.perfectTime) {
+        document.getElementById("LevelTimer").style.color = "#ffffff";
+    }
+    
+
+    var timeString = timerDate.toISOString().substring(15, 21);
+    document.getElementById("LevelTimer").innerHTML = timeString;
+
+}
+
+
+
+function Interface_EndTimer() {
+
+    clearInterval(timerInterval);
+
+    timerBeganAt = 0;
+
+    document.getElementById("LevelTimer").style.color = "#ffffff50";
+    document.getElementById("LevelTimer").innerHTML = "0:00.0";
 
 }
 
@@ -320,6 +367,7 @@ function Level_Load(levelData) {
 
     // User Interface    
     document.getElementById("LevelTitle").innerHTML = Level.levelOrder + ": " + Level.levelName;
+    document.getElementById("LevelDescription").innerHTML = "(?) " + Level.levelDescription;
     Interface_UpdateMoveCount(movesMade, Level.perfectMoveCount);
 
     document.getElementById("LevelScreen").style.visibility = "visible";
@@ -340,6 +388,9 @@ function Level_End() {
     PosX = 0;
     PosY = 0;
     inGame = false;
+
+    // End timer
+    Interface_EndTimer();
 
     // Update UI
     document.getElementById("LevelCompleteOverlay").style.visibility = "visible";
@@ -405,6 +456,9 @@ function Level_Restart() {
     // Are we in game?
     if (inGame == false) { return; }
 
+    // Restart timer
+    Interface_EndTimer();
+
     // Reset the players location
     PosX = Level.spawnLocation.x;
     PosY = Level.spawnLocation.y;
@@ -427,22 +481,27 @@ document.addEventListener("keydown", (ev) => {
 
     if (ev.code == "KeyW" || ev.code == "ArrowUp") {
 
+        Interface_BeginTimer();
         Player_Move(0, -1);
 
     } else if (ev.code == "KeyS" || ev.code == "ArrowDown") {
 
+        Interface_BeginTimer();
         Player_Move(0, 1);
 
     } else if (ev.code == "KeyD" || ev.code == "ArrowRight") {
 
+        Interface_BeginTimer();
         Player_Move(1, 0);
        
     } else if (ev.code == "KeyA" || ev.code == "ArrowLeft") {
 
+        Interface_BeginTimer();
         Player_Move(-1, 0);
            
     } else if (ev.code == "KeyR" ) {
 
+        Interface_BeginTimer();
         Level_Restart();
            
     } else if (ev.code == "Enter" ) {
@@ -465,8 +524,9 @@ document.addEventListener("keydown", (ev) => {
 
 document.getElementById("PlayButton").addEventListener("mouseup", (ev) => Event_PlayButtonReleased());
 document.getElementById("ContinueButton").addEventListener("mouseup", (ev) => Level_Continue());
+document.getElementById("RestartButton").addEventListener("mouseup", (ev) => Level_Restart());
+
 
 Colour_Import();
-
 
 // MINOR BUG: Setting node colour to black makes it impossible to see the outline

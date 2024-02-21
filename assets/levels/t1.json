@@ -1,10 +1,12 @@
 {
     "levelName": "Walls",
     "levelOrder": "Tutorial 1",
+    "levelDescription": "Reach the flag",
     "Size": 5,
     "spawnLocation": { "x": 0, "y": 4 },
     "backgroundColour": "White",
     "perfectMoveCount": 16,
+    "perfectTime": 3500,
     
     "Layout": [
         [ 
