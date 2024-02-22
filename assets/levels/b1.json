@@ -1,0 +1,66 @@
+{
+    "levelName": "Primary Power",
+    "levelOrder": "Beginner 1",
+    "levelDescription": "This is where the game actually begins",
+    "Size": 9,
+    "spawnLocation": { "x": 0, "y": 0 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 88,
+    "perfectTime": 20000,
+
+    "Layout": [
+        [
+            {}, {}, {}, 
+            {}, {}, {}, 
+            {}, { "Type": "Wall", "Colour": "Blue"}, { "Type": "Node", "subType": "End" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Wall", "Colour": "Blue"}, { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "Resetter" }, { "Type": "Wall" }, { "Type": "Wall" }, 
+            { "Type": "Node", "subType": "Resetter" }, { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            {}, {}, {}, 
+            {}, { "Type": "Wall" }, {}, 
+            {}, {}, {}
+        ],
+        
+        [
+            { "Type": "Wall" }, { "Type": "Wall", "Colour": "Red"}, { "Type": "Wall" }, 
+            {}, { "Type": "Wall" }, {}, 
+            { "Type": "Wall" }, { "Type": "Wall", "Colour": "Yellow"}, { "Type": "Node", "subType": "Resetter" }
+        ],
+        
+        [
+            { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, {}, { "Type": "Wall", "Colour": "Yellow"}, 
+            {}, {}, {}, 
+            { "Type": "Wall", "Colour": "Red"}, {}, {}
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" }, 
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall", "Colour": "Blue"}, 
+            { "Type": "Wall" }, {}, { "Type": "Wall" }
+        ],
+
+        [
+            {}, {}, {}, 
+            {}, { "Type": "Wall", "Colour": "Yellow"}, {}, 
+            {}, {}, { "Type": "Wall" }
+        ],
+
+        [
+            {}, { "Type": "Wall" }, { "Type": "Wall" }, 
+            { "Type": "Wall" }, { "Type": "Wall" }, {}, 
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            {}, {}, {}, 
+            { "Type": "Node", "subType": "Setter", "Colour": "Blue" }, { "Type": "Wall", "Colour": "Blue"}, {}, 
+            {}, {}, { "Type": "Node", "subType": "Setter", "Colour": "Red" }
+        ]
+    ]
+}

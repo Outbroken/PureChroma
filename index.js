@@ -7,7 +7,8 @@ const imagesFolder = './assets/images/';
 const levelNames = [
     "t1",
     "t2",
-    "t3"
+    "t3",
+    "b1"
 ]
 
 var currentLevel = 0;

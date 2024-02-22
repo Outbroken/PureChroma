@@ -33,7 +33,7 @@
     },
 
     "Yellow": {
-        "Hex": "#cec631",
+        "Hex": "#fce21b",
         "invertNeutralColour": true,
         "mixWith": {
             "Blue": "Green",
