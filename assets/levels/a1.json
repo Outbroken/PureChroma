@@ -1,0 +1,37 @@
+{
+    "levelName": "Gate of Misfortune",
+    "levelOrder": "Advanced 1",
+    "levelDescription": "Unlock gates by becoming the same colour",
+    "Size": 5,
+    "spawnLocation": { "x": 0, "y": 2 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 10,
+    "perfectTime": 3000,
+
+    "Layout": [
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Node", "subType": "Setter", "Colour": "Red" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            {}, {}, { "Type": "Node", "subType": "Gate", "Colour": "Red" },
+            { "Type": "Wall", "Colour": "Blue"}, { "Type": "Node", "subType": "End" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Node", "subType": "Setter", "Colour": "Blue" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ]
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "levelName": "Mundane Mixing",
+    "levelOrder": "Beginner 2",
+    "levelDescription": "The world of colours has opened up",
+    "Size": 5,
+    "spawnLocation": { "x": 0, "y": 2 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 4,
+    "perfectTime": 1500,
+
+    "Layout": [
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            {}, { "Type": "Node", "subType": "Setter", "Colour": "Red" }, { "Type": "Node", "subType": "Mixer", "Colour": "Blue" },
+            { "Type": "Wall", "Colour": "Purple"}, { "Type": "Node", "subType": "End" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ]
+    ]
+}

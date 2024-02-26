@@ -1,7 +1,7 @@
 {
     "levelName": "Red & Blue",
     "levelOrder": "Tutorial X",
-    "levelDescription": "Use what you've learned to help",
+    "levelDescription": "Remember what you learned?",
     "Size": 9,
     "spawnLocation": { "x": 0, "y": 0 },
     "backgroundColour": "White",
@@ -29,9 +29,9 @@
             
             {}, {}, {}, {},
             { "Type": "Wall" }, 
-            { "Type": "Node", "subType": "Resetter" },  
+            { "Type": "Node", "subType": "Danger" },  
             {}, {},
-            { "Type": "Node", "subType": "Resetter" }
+            { "Type": "Node", "subType": "Danger" }
         ],
         
         [ 
@@ -52,9 +52,9 @@
             {}, 
             {}, 
             { "Type": "Wall" },  
-            { "Type": "Node", "subType": "Resetter" },  
+            { "Type": "Node", "subType": "Danger" },  
             {}, {},
-            { "Type": "Node", "subType": "Resetter" }
+            { "Type": "Node", "subType": "Danger" }
         ],
 
         [
@@ -74,7 +74,7 @@
             { "Type": "Wall" }, 
             { "Type": "Node", "subType": "Setter", "Colour": "Blue" },
             {}, {}, 
-            { "Type": "Node", "subType": "Resetter" }
+            { "Type": "Node", "subType": "Danger" }
         ],
 
         [

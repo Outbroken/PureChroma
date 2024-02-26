@@ -8,8 +8,18 @@ const levelNames = [
     "t1",
     "t2",
     "t3",
-    "b1"
+    "b1",
+    "b2",
+    "b3",
+    "a1",
+    "a2"
 ]
+
+var starLocations = {};
+var starCount = 0;
+
+var removedGates = [];
+
 
 var currentLevel = 0;
 var movesMade = 0;
@@ -26,6 +36,9 @@ var timerDate = new Date(0);
 
 var playerColour;
 var inGame = false;
+
+
+var resetDeathMessageTimeout;
 
 // Functions
 
@@ -55,6 +68,26 @@ function Interface_UpdateMoveCount(Moves, perfectMoveCount) {
 
 }
 
+
+
+function Interface_DisplayDeathMessage(message) {
+
+    document.getElementById("LevelHelp").style.color = "#e8202a";
+    document.getElementById("LevelHelp").innerHTML = "(!) " + message;
+
+    if (resetDeathMessageTimeout) {
+
+        clearTimeout(resetDeathMessageTimeout);
+        resetDeathMessageTimeout = null;
+        
+    }
+
+    resetDeathMessageTimeout = setTimeout(function() {
+        document.getElementById("LevelHelp").style.color = "#ffffff50";
+        document.getElementById("LevelHelp").innerHTML = "(?) " + Level.levelDescription;
+    }, 2000)
+
+}
 
 
 function Interface_BeginTimer() {
@@ -100,7 +133,81 @@ function Interface_EndTimer() {
 
 
 
+function IncrementStarCount(level, reason) {
+
+    if (starLocations[level]) {
+
+        if (starLocations[level][reason]) { return; }
+
+        starLocations[level][reason] = true;
+
+    } else {
+
+        starLocations[level] = {}
+        starLocations[level][reason] = true;
+
+    }
+
+    starCount += 1;
+
+    var starIcon = "<img id='StarCount_Image' src='/assets/images/ActiveStar.png'></img>"
+    document.getElementById("StarCount").innerHTML = starIcon + starCount + "/" + (levelNames.length * 3);
+
+}
+
+
+
+// Function needs to be called before variables are wiped!
+function Interface_UpdateStars() {
+
+    IncrementStarCount(levelNames[currentLevel], "Completion");
+
+    // Star 1
+    document.getElementById("LevelComplete_Star1Label").innerHTML = "Moves (" + movesMade + " / " + Level.perfectMoveCount + ")";
+
+    if (movesMade > Level.perfectMoveCount) {
+        document.getElementById("LevelComplete_Star1").src = "/assets/images/InactiveStar.png";
+        document.getElementById("LevelComplete_Star1").style.opacity = 0.6;
+        document.getElementById("LevelComplete_Star1Label").style.color = "#ffffff50";
+    } else {
+        document.getElementById("LevelComplete_Star1").src = "/assets/images/ActiveStar.png";
+        document.getElementById("LevelComplete_Star1").style.opacity = 1;
+        document.getElementById("LevelComplete_Star1Label").style.color = "#36ce31";
+
+        IncrementStarCount(levelNames[currentLevel], "Perfection");
+    }
+
+    // Star 3
+    var timeDifference = Date.now() - timerBeganAt
+    var formattedTimeDifference = Math.round(timeDifference / 100) / 10 + "s"
+    var formattedPerfectTime = Level.perfectTime / 1000 + "s"
+
+    document.getElementById("LevelComplete_Star3Label").innerHTML = "Time (" + formattedTimeDifference + " / " + formattedPerfectTime + ")";
+
+    if (timeDifference > Level.perfectTime) {
+        document.getElementById("LevelComplete_Star3").src = "/assets/images/InactiveStar.png";
+        document.getElementById("LevelComplete_Star3").style.opacity = 0.6;
+        document.getElementById("LevelComplete_Star3Label").style.color = "#ffffff50";
+    } else {
+        document.getElementById("LevelComplete_Star3").src = "/assets/images/ActiveStar.png";
+        document.getElementById("LevelComplete_Star3").style.opacity = 1;
+        document.getElementById("LevelComplete_Star3Label").style.color = "#36ce31";
+
+        IncrementStarCount(levelNames[currentLevel], "Agility");
+    }
+
+}
+
+
+
 function Level_Import(levelName, callback) {
+
+    // If there's no level, roll credits
+    if (!levelName) {
+        document.getElementById("LevelScreen").style.visibility = "collapse";
+        document.getElementById("CreditsScreen").style.visibility = "visible";
+        return;
+    }
 
     var levelPath = levelsFolder + levelName + ".json";
     
@@ -169,7 +276,7 @@ function Tile_New(tileData, sizePercentage) {
    
         } else {
    
-            newTile.style.backgroundColor = Colour_GetContrast(playerColour) + "50";
+            newTile.style.backgroundColor = Colour_GetContrast(Level.backgroundColour) + "50";
    
         }
 
@@ -185,7 +292,7 @@ function Tile_New(tileData, sizePercentage) {
 
     if (Colours[Level.backgroundColour].invertNeutralColour == true) { newTileIcon.style.filter = "invert(100%)"}
 
-    if (tileData.subType == "Resetter" || tileData.subType == "End") { return; }
+    if (tileData.subType == "Resetter" || tileData.subType == "End" || tileData.subType == "Danger" ) { return; }
 
 
     var newTileBackground = document.createElement("div");
@@ -215,6 +322,65 @@ function Grid_Create() {
         for (y = 0; y < Level.Size; y++) 
         {
             Tile_New(Level.Layout[x][y], sizePercentage);
+        }
+    }
+
+}
+
+
+
+function Grid_Polish() {
+
+    for (x = 0; x < Level.Size; x++) 
+    {
+        for (y = 0; y < Level.Size; y++) 
+        {
+            // Detect neighbours
+            var tileElement = document.getElementById(x + "/" + y);
+            if (Level.Layout[x][y].Type != "Wall") { continue; }
+
+            tileElement.style.borderRadius = "0";
+        }
+    }
+
+    for (x = 0; x < Level.Size; x++) 
+    {
+        for (y = 0; y < Level.Size; y++) 
+        {
+            // Detect neighbours
+            var tileElement = document.getElementById(x + "/" + y);
+            if (Level.Layout[x][y].Type != "Wall") { continue; }
+
+            var leftNeighbourExists = (!Level.Layout[x][y - 1] || (Level.Layout[x][y - 1].Type == "Wall" && Level.Layout[x][y - 1].Colour != playerColour)) ? false : true;
+            var rightNeighbourExists = (!Level.Layout[x][y + 1] || (Level.Layout[x][y + 1].Type == "Wall" && Level.Layout[x][y + 1].Colour != playerColour)) ? false : true;
+
+            var topNeighbourExists = (!Level.Layout[x - 1] || (Level.Layout[x - 1][y].Type == "Wall" && Level.Layout[x - 1][y].Colour != playerColour)) ? false : true;
+            var bottomNeighbourExists = (!Level.Layout[x + 1] || (Level.Layout[x + 1][y].Type == "Wall" && Level.Layout[x + 1][y].Colour != playerColour)) ? false : true;
+
+            // Update borders
+            tileElement.style.borderRadius = "0";
+            tileElement.style.transitionProperty = "";
+
+            if (leftNeighbourExists == true && topNeighbourExists == true) 
+            { 
+                tileElement.style.borderTopLeftRadius = "2vh"; tileElement.style.transitionProperty = "border-radius"
+            }
+            
+            if (rightNeighbourExists == true && topNeighbourExists == true) 
+            { 
+                tileElement.style.borderTopRightRadius = "2vh"; tileElement.style.transitionProperty = "border-radius"
+            }
+
+            if (leftNeighbourExists == true && bottomNeighbourExists == true) 
+            { 
+                tileElement.style.borderBottomLeftRadius = "2vh"; tileElement.style.transitionProperty = "border-radius"
+            }
+
+            if (rightNeighbourExists == true && bottomNeighbourExists == true) 
+            { 
+                tileElement.style.borderBottomRightRadius = "2vh"; tileElement.style.transitionProperty = "border-radius"
+            }
+
         }
     }
 
@@ -253,6 +419,8 @@ function Level_ObtainLayout(levelData) {
 
 function Player_ChangeColour(newColour) {
 
+    if (playerColour == newColour) { return; }
+
     var colourHex = Colours[newColour].Hex;
     
     document.getElementById("LevelGrid").style.backgroundColor = colourHex;
@@ -270,6 +438,11 @@ function Player_ChangeColour(newColour) {
     for (var i = 0; i < tileIcons.length; i++){
         tileIcons[i].style.filter = invertString;
     }
+
+
+    // Polish Grid
+    Grid_Polish();
+
 }
 
 
@@ -288,6 +461,7 @@ function Player_Move(x, y) {
     // Check 2: Wall in the way and we're not the same colour?
     var newTileData = Level.Layout[newY][newX];
     if (newTileData.Type == "Wall" && (newTileData.Colour != playerColour)) { return; }
+    if (newTileData.subType == "Gate" && (newTileData.Colour != playerColour)) { return; }
 
     // Update our position
     PosX = newX;
@@ -300,9 +474,12 @@ function Player_Move(x, y) {
     movesMade += 1;
     Interface_UpdateMoveCount(movesMade, Level.perfectMoveCount)
 
+    // Start timer if necessary
+    Interface_BeginTimer();
+
     // Trigger node functions
-    if (newTileData.Type != "Node") { return; }
-        
+    if (newTileData.Type != "Node") {  return;   }
+
     if (newTileData.subType == "Resetter") {
             
         Player_ChangeColour(Level.backgroundColour);
@@ -311,7 +488,50 @@ function Player_Move(x, y) {
 
         Player_ChangeColour(newTileData.Colour);
 
-    } else if (newTileData.subType == "End") {
+    } else if (newTileData.subType == "Danger") {
+
+        Interface_DisplayDeathMessage("Avoid the skulls")
+        Level_Restart();
+
+    } else if (newTileData.subType == "Launcher") {
+
+
+    } else if (newTileData.subType == "Gate") {
+
+        // Because of a check earlier, we have to be the same colour as the gate
+        Level.Layout[PosY][PosX] = {}
+        removedGates[removedGates.length] = {"x": PosX, "y": PosY, colour: newTileData.Colour }
+
+        document.getElementById(PosY + "/" + PosX).getElementsByClassName("TileIcon")[0].remove();
+        document.getElementById(PosY + "/" + PosX).getElementsByClassName("TileIconBackground")[0].remove();
+
+    } else if (newTileData.subType == "Mixer") {
+
+        var mixedColour = "_Error";
+        var mixTable = Colours[newTileData.Colour].mixWith;
+
+        if (playerColour == "White" || playerColour == newTileData.Colour) {
+
+            mixedColour = newTileData.Colour
+
+        } 
+        else if (mixTable && mixTable[playerColour]) {
+
+            mixedColour = mixTable[playerColour]
+
+        } else {
+
+            Interface_DisplayDeathMessage("You can't make that")
+
+            Level_Restart();
+            return;
+            
+        }
+
+        Player_ChangeColour(mixedColour);
+
+    }
+    else if (newTileData.subType == "End") {
 
        Level_End();
 
@@ -360,15 +580,17 @@ function Level_Load(levelData) {
     // Initialize
     Level = levelData;
     Player_Initialize(Level.spawnLocation.x, Level.spawnLocation.y, Level.Size);
-    Player_ChangeColour(Level.backgroundColour);
     movesMade = 0;
 
     // Create the grid
     Grid_Create();
 
+    // Change the player's colour
+    Player_ChangeColour(Level.backgroundColour);
+
     // User Interface    
     document.getElementById("LevelTitle").innerHTML = Level.levelOrder + ": " + Level.levelName;
-    document.getElementById("LevelDescription").innerHTML = "(?) " + Level.levelDescription;
+    document.getElementById("LevelHelp").innerHTML = "(?) " + Level.levelDescription;
     Interface_UpdateMoveCount(movesMade, Level.perfectMoveCount);
 
     document.getElementById("LevelScreen").style.visibility = "visible";
@@ -383,8 +605,12 @@ function Level_Load(levelData) {
 
 function Level_End() {
 
+    // Update Stars
+    Interface_UpdateStars();
+
     // Wipe Variables
     Level = {};
+    removedGates = [];
     playerColour = null;
     PosX = 0;
     PosY = 0;
@@ -396,9 +622,6 @@ function Level_End() {
     // Update UI
     document.getElementById("LevelCompleteOverlay").style.visibility = "visible";
     document.getElementById("LevelCompleteOverlay").style.opacity = "1";
-
-    // Update our level number
-    currentLevel += 1;
 
 }
 
@@ -444,6 +667,9 @@ function Level_Continue() {
     {
         document.getElementById("LevelCompleteOverlay").style.visibility = "collapse";
     }, 300)
+    
+    // Update our level number
+    currentLevel += 1;
 
     // Load next level
     Level_Import(levelNames[currentLevel], Level_Load);
@@ -472,9 +698,64 @@ function Level_Restart() {
     // Reset the player's move count
     movesMade = 0;
     Interface_UpdateMoveCount(movesMade, Level.perfectMoveCount)
+    
+    // Reconstruct Gates
+    for (i = 0; i < removedGates.length; i++) {
 
+        var d = removedGates[i];
+
+        Level.Layout[d.y][d.x] = { "Type": "Node", "subType": "Gate", "Colour": d.colour }
+
+        var newTileIcon = document.createElement("img");
+        newTileIcon.src = imagesFolder + "Gate.svg";
+        newTileIcon.classList.add('TileIcon');
+        document.getElementById(d.y + "/" + d.x).appendChild(newTileIcon);
+
+        if (Colours[Level.backgroundColour].invertNeutralColour == true) { newTileIcon.style.filter = "invert(100%)"}
+
+        var newTileBackground = document.createElement("div");
+        newTileBackground.classList.add('TileIconBackground');
+        newTileBackground.style.backgroundColor = Colours[d.colour].Hex;   
+        document.getElementById(d.y + "/" + d.x).appendChild(newTileBackground);
+
+    }
+
+    removedGates = [];
 }
  
+
+
+function Level_Retry() {
+
+    // Are we in game?
+    if (inGame == true) { return; }
+
+    // Update UI
+    document.getElementById("LevelCompleteOverlay").style.opacity = "0";
+
+    setTimeout(function() 
+    {
+        document.getElementById("LevelCompleteOverlay").style.visibility = "collapse";
+    }, 300)
+    
+    // Clear Grid
+    $('.Tile').remove();
+
+    // Reload level
+    Level_Import(levelNames[currentLevel], Level_Load);
+
+}
+
+
+function ReturnToMenu() {
+
+    currentLevel = 0;
+    
+    document.getElementById("TitleScreen").style.opacity = 1;
+    document.getElementById("TitleScreen").style.visibility = "visible";
+    document.getElementById("CreditsScreen").style.visibility = "collapse";
+
+}
 
 
 // execution
@@ -482,28 +763,28 @@ document.addEventListener("keydown", (ev) => {
 
     if (ev.code == "KeyW" || ev.code == "ArrowUp") {
 
-        Interface_BeginTimer();
         Player_Move(0, -1);
 
     } else if (ev.code == "KeyS" || ev.code == "ArrowDown") {
 
-        Interface_BeginTimer();
         Player_Move(0, 1);
 
     } else if (ev.code == "KeyD" || ev.code == "ArrowRight") {
 
-        Interface_BeginTimer();
         Player_Move(1, 0);
        
     } else if (ev.code == "KeyA" || ev.code == "ArrowLeft") {
 
-        Interface_BeginTimer();
         Player_Move(-1, 0);
            
     } else if (ev.code == "KeyR" ) {
 
-        Interface_BeginTimer();
-        Level_Restart();
+        if (inGame == true) {
+            Level_Restart();
+        } else {
+            Level_Retry();
+        }
+       
            
     } else if (ev.code == "Enter" ) {
 
@@ -526,8 +807,14 @@ document.addEventListener("keydown", (ev) => {
 document.getElementById("PlayButton").addEventListener("mouseup", (ev) => Event_PlayButtonReleased());
 document.getElementById("ContinueButton").addEventListener("mouseup", (ev) => Level_Continue());
 document.getElementById("RestartButton").addEventListener("mouseup", (ev) => Level_Restart());
-
+document.getElementById("RetryButton").addEventListener("mouseup", (ev) => Level_Retry());
+document.getElementById("ReturnToMenuButton").addEventListener("mouseup", (ev) => ReturnToMenu());
 
 Colour_Import();
+document.getElementById("StarCount").innerHTML = "<img id='StarCount_Image' src='/assets/images/ActiveStar.png'></img>0/" + (levelNames.length * 3);
 
 // MINOR BUG: Setting node colour to black makes it impossible to see the outline
+
+// FEATURE: Make launchers work! Create final level!
+
+// MODERATE BUG: Star clips of the left edge of the screen when star count is 4 characters long

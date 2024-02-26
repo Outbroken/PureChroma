@@ -14,21 +14,27 @@
         "invertNeutralColour": true
     },
 
+
+    
     "Red": {
-        "Hex": "#ce3131",
+        "Hex": "#e8202a",
         "invertNeutralColour": true,
         "mixWith": {
             "Yellow": "Orange",
-            "Blue": "Purple"
+            "Blue": "Purple",
+            "Purple": "Magenta",
+            "Orange": "Vermillion"
         }
     },
 
     "Blue": {
-        "Hex": "#3150ce",
+        "Hex": "#435fef",
         "invertNeutralColour": true,
         "mixWith": {
             "Yellow": "Green",
-            "Red": "Purple"
+            "Red": "Purple",
+            "Green": "Teal",
+            "Purple": "Violet"
         }
     },
 
@@ -37,22 +43,80 @@
         "invertNeutralColour": true,
         "mixWith": {
             "Blue": "Green",
-            "Red": "Orange"
+            "Red": "Orange",
+            "Orange": "Amber",
+            "Green": "Chartreuse"
         }
     },
 
+
+
     "Green": {
         "Hex": "#36ce31",
-        "invertNeutralColour": true
+        "invertNeutralColour": true,
+        "mixWith": {
+            "Blue": "Teal",
+            "Yellow": "Chartreuse"
+        }
     },
 
     "Purple": {
-        "Hex": "#be31ce",
-        "invertNeutralColour": true
+        "Hex": "#9900e0",
+        "invertNeutralColour": true,
+        "mixWith": {
+            "Blue": "Violet",
+            "Red": "Magenta"
+        }
     },
 
     "Orange": {
-        "Hex": "#e28928",
+        "Hex": "#f98e1b",
+        "invertNeutralColour": true,
+        "mixWith": {
+            "Red": "Vermillion",
+            "Yellow": "Amber"
+        }
+    },
+
+
+
+
+    "Violet": {
+        "Hex": "#3200ac",
+        "invertNeutralColour": true
+    },
+
+    "Teal": {
+        "Hex": "#23c4ae",
+        "invertNeutralColour": true
+    },
+
+    "Chartreuse": {
+        "Hex": "#80c000",
+        "invertNeutralColour": true
+    },
+
+    "Amber": {
+        "Hex": "#ffc000",
+        "invertNeutralColour": true
+    },
+
+    "Vermillion": {
+        "Hex": "#ff6300",
+        "invertNeutralColour": true
+    },
+
+    "Magenta": {
+        "Hex": "#7e005d",
+        "invertNeutralColour": true
+    },
+
+    
+
+
+
+    "_Error": {
+        "Hex": "#7a480f",
         "invertNeutralColour": true
     }
 }

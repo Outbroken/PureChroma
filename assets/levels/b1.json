@@ -1,7 +1,7 @@
 {
     "levelName": "Primary Power",
     "levelOrder": "Beginner 1",
-    "levelDescription": "This is where the game actually begins",
+    "levelDescription": "It's only going to get harder",
     "Size": 9,
     "spawnLocation": { "x": 0, "y": 0 },
     "backgroundColour": "White",

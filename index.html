@@ -12,14 +12,17 @@
 <body>
     <!-- Create the Website -->
     <div id="TitleScreen">
-        <img id="TitleBackgroundImage" src="assets/images/TitleBackgroundImage.png"></img>
-        <img id="TitleImage" src="assets/images/TitleImage.png"></img>
+        <img id="TitleBackgroundImage" src="/assets/images/TitleBackgroundImage.png"></img>
+        <img id="TitleImage" src="/assets/images/TitleImage.png"></img>
+
         <button id="PlayButton" class="ImportantButton">Play</button>
+
+        <p id="VersionIndicator"> Alpha v0.23 (Expect Bugs)</p>
     </div>
 
     <div id="LevelScreen">
         <p id="LevelTitle">Loading...</p>
-        <p id="LevelDescription">(?) Reach the flag</p>
+        <p id="LevelHelp">(?) Reach the flag</p>
 
         <p id="LevelMoveCounter">00/00</p>
         <p id="LevelMoveCounter_Label">Moves</p>
@@ -35,13 +38,34 @@
         <button class="ImportantButton" id="RestartButton" >Restart</button>
 
         <div id="LevelCompleteOverlay">
-            <p id="LevelCompleteMessage">Level Complete!</p>
-            <button id="ContinueButton" class="ImportantButton">Continue?</button>
+            <div id="LevelComplete_StarContainer">
+                <img id="LevelComplete_Star1" class="LevelComplete_Star" src="assets/images/InactiveStar.png"></img>
+                <img id="LevelComplete_Star2" class="LevelComplete_Star" src="assets/images/ActiveStar.png"></img>   
+                <img id="LevelComplete_Star3" class="LevelComplete_Star" src="assets/images/InactiveStar.png"> </img>
+    
+                <p id="LevelComplete_Star1Label" class="LevelComplete_StarLabel">Moves [16/14]</p>
+                <p id="LevelComplete_Star2Label" class="LevelComplete_StarLabel">Complete the Level</p>
+                <p id="LevelComplete_Star3Label" class="LevelComplete_StarLabel">Time (0:12.6/0:14.5)</p>
+            </div>
+        
+            <img id="LevelCompleteImage" src="/assets/images/LevelComplete.png"></img>
+
+            <button id="ContinueButton" class="ImportantButton"><img id="ContinueButtonImage" src="assets/images/Continue.svg"></img>Continue</button>
+            <button id="RetryButton" class="ImportantButton"><img id="RetryButtonImage" src="assets/images/Retry.svg">Retry</button>
         </div>
     </div>
 
-    <p id="VersionIndicator"> Alpha v0.11 (Expect Bugs)</p>
+    <div id="CreditsScreen">
+        <p class="CreditsHeader">A game created by Casey McLaughlin.</p>
+        <p class="CreditsText" style="top:15%;">Thanks Oliver, James, William, and my dad for testing.</p>
+        <p class="CreditsText" style="top:22%;">Many icons taken from <a href="https://fontawesome.com">fontawesome.com</a></p>
+        <p class="CreditsText" style="top:42%;">Thank you for playing.</p>
+        <p class="CreditsText" style="top:62%;">Can you believe that this short game is like 2000 lines of code?</p>
+        <button id="ReturnToMenuButton" class="ImportantButton"><img id="ReturnToMenuImage" src="assets/images/Menu.svg">Return</button>
+    </div>
 
+    <p id="StarCount"><img id="StarCount_Image" src="/assets/images/ActiveStar.png"></img>0/21</p>
+    
     <!-- Load Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script type="text/javascript" src="index.js"></script>

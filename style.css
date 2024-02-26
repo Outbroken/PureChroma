@@ -69,11 +69,14 @@ html {
 
 #TitleScreen {
     
+    margin-top: -1%;
+
     transition-property: opacity;
     transition-duration: 300ms;
 
-    padding: 0;
-
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -105,7 +108,7 @@ html {
     position: absolute;
 
     width: 115%;
-    height: 115%;
+    height: 105%;
 
     object-fit: cover;
 
@@ -115,6 +118,34 @@ html {
 
 }
 
+
+#StarCount {
+
+    position: absolute;
+
+    left: 6.5%;
+    bottom: -3.5%;
+    transform: translate(-50%, -50%);
+
+    user-select: none;
+    font-family: var(--Core-Font);
+    font-size: 2cqw;
+
+    text-align: left;
+
+    color: #ffffff;
+
+}
+
+#StarCount_Image {
+
+    position: absolute;
+    bottom: 1%;
+    left: -80%;
+
+    height: 120%;
+
+}
 
 
 .ImportantButton {
@@ -189,7 +220,8 @@ html {
     top: 0;
     border-radius: 1vh;
 
-    transition: 300ms;
+    transition-property: backgroundColor;
+    transition-duration: 300ms;
 }
 
 .ImportantButton:hover {
@@ -386,7 +418,7 @@ html {
 
 
 
-#LevelDescription {
+#LevelHelp {
 
     position: absolute;
     text-align: right;
@@ -402,6 +434,9 @@ html {
     right: 2%;
     bottom: 0%;
 
+    transition-property: color;
+    transition-duration: 300ms;
+
 }
 
 
@@ -410,6 +445,8 @@ html {
 
     user-select: none;
     background-color: #00000000;
+
+    transition-duration: 1000ms;
 
 }
 
@@ -435,11 +472,11 @@ html {
 
 .TileIconBackground {
 
-    margin-left: 18%;
-    margin-top: -74%;
+    margin-left: 13%;
+    margin-top: -78%;
     
-    width: 65%;
-    height: 65%;
+    width: 72%;
+    height: 72%;
     
     border-radius: 100%;
 
@@ -463,6 +500,7 @@ html {
 }
 
 
+/* ------------------------------------------------------------------------------------------ */
 
 
 #LevelCompleteOverlay {
@@ -484,34 +522,170 @@ html {
 }
 
 
-
-#LevelCompleteMessage {
-
-    font-family: var(--Core-Font);
-    font-size: 4cqw;
-    color: var(--Text-Colour);
+#LevelComplete_StarContainer {
 
     position: absolute;
+    top: 5%;
+    left: 32%;
 
+    width: 100%;
+    height: 100%;
+
+}
+
+.LevelComplete_Star {
+
+    position: absolute;
+    height: 10%;
+    
     margin: 0;
 
-    width: 40%;
-    height: 10%;
+}
 
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#LevelComplete_Star1 {
+    
+    top: 21%;
+    opacity: 0.6;
+
+} 
+
+#LevelComplete_Star2 {
+
+    top: 35%;
+
+} 
+
+#LevelComplete_Star3 {
+
+    top: 49%;
+    opacity: 0.6;
+
+} 
+
+
+.LevelComplete_StarLabel {
+
+    position: absolute;
+    margin: 0;
+
+    left: 7.5%;
+
+    font-family: var(--Core-Font);
+    font-size: 3cqw;
 
     user-select: none;
     text-align: center;
+    
+    text-shadow: 0 0.05em 0.3em #00000090;
 
 }
 
 
+#LevelComplete_Star1Label {
+
+    top: 23.5%;
+    color: #ffffff;
+
+} 
+
+#LevelComplete_Star2Label {
+
+    top: 37.5%;
+    color: #36ce31;
+    
+} 
+
+#LevelComplete_Star3Label {
+
+    top: 51.5%;
+    color: #ffffff;
+
+} 
+
+#RetryButton {
+
+    margin-top: 16%;
+    margin-left: 9%;
+
+    
+    padding-left: 2%;
+    width: 13%;
+}
+
+#RetryButton:hover #RetryButtonImage { opacity: 1; } 
+
+#RetryButton:active #RetryButtonImage { filter: invert(100%); }
+
+#RetryButtonImage {
+
+    user-select: none;
+    
+    transition-property: opacity, filter; 
+    transition-duration: 500ms;
+
+    position: absolute;
+
+
+    height: 55%;
+    top: 21%;
+    left: 6.5%;
+
+    opacity: 0.37;
+
+}
 
 #ContinueButton {
 
-    margin-top: 3%;
+    margin-top: 16%;
+    margin-left: -9%;
+
+    padding-left: 3.5%;
+    width: 16%;
+
+}
+
+#ContinueButton:hover #ContinueButtonImage { opacity: 1; } 
+
+#ContinueButton:active #ContinueButtonImage { filter: invert(100%); }
+
+
+#ContinueButtonImage {
+
+    user-select: none;
+
+    transition-property: opacity, filter; 
+    transition-duration: 500ms;
+
+    position: absolute;
+
+
+    height: 60%;
+    top: 18%;
+    left: 6%;
+
+    opacity: 0.37;
+
+}
+
+
+#LevelCompleteImage {
+
+    user-select: none;
+    position: absolute;
+    
+    margin-top: 0%;
+
+    left: 50%;
+
+    width: 90%;
+    height: 24%;
+
+    animation: 4s cubic-bezier(0.37, 0, 0.63, 1) 0s infinite alternate Bob;
+    transition-property: opacity;
+    transition-duration: 300ms;
+
+    object-fit: contain;
+    
 
 }
 
@@ -526,16 +700,86 @@ html {
 
 }
 
-
 #VersionIndicator {
+
     font-family: var(--Core-Font);
-    font-size: 0.9em;
+    font-size: 0.8cqw;
     color: #ffffff50;
 
     position: absolute;
 
-    left: 10px;
-    bottom: 10px;
+    right: 1.5%;
 
+    bottom: 1%;
     margin: 0;
+
+}
+
+#CreditsScreen {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    visibility: collapse;
+
+}
+
+.CreditsHeader {
+
+    font-family: var(--Core-Font);
+    font-size: 2.5cqw;
+    color: #ffffff;
+
+    position: absolute;
+
+    top: 5%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    
+
+}
+
+.CreditsText {
+    
+    font-family: var(--Core-Font);
+    font-size: 2cqw;
+    color: #ffffff;
+
+    position: absolute;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+#ReturnToMenuButton {
+
+    top: 85%;
+
+}
+
+#ReturnToMenuButton:hover #ReturnToMenuImage { opacity: 1; } 
+
+#ReturnToMenuButton:active #ReturnToMenuImage { filter: invert(100%); }
+
+
+#ReturnToMenuImage {
+
+    user-select: none;
+
+    transition-property: opacity, filter; 
+    transition-duration: 500ms;
+
+    position: absolute;
+
+
+    height: 60%;
+    top: 18%;
+    left: 6%;
+
+    opacity: 0.37;
+
 }

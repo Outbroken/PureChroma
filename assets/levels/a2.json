@@ -1,0 +1,42 @@
+{
+    "levelName": "Lavish Launchers",
+    "levelOrder": "Advanced 2",
+    "levelDescription": "Launchers go through walls of their colour",
+    "Size": 6,
+    "spawnLocation": { "x": 1, "y": 2 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 10,
+    "perfectTime": 3000,
+
+    "Layout": [
+        [
+            {"Type": "Node", "subType": "Launcher", "Colour": "Red", "Direction": 90}, {}, {}, {"Type": "Wall"}, 
+            {}, {"Type": "Node", "subType": "End"}
+        ],
+
+        [
+            {"Type": "Node", "subType": "Launcher", "Colour": "Orange", "Direction": 90}, {}, {}, {"Type": "Wall", "Colour": "Yellow"}, 
+            {}, {"Type": "Node", "subType": "End"}
+        ],
+
+        [
+            {"Type": "Node", "subType": "Launcher", "Colour": "Yellow", "Direction": 90}, {}, {}, {"Type": "Wall", "Colour": "Red"}, 
+            {}, {"Type": "Node", "subType": "End"}
+        ],
+
+        [
+            {"Type": "Node", "subType": "Launcher", "Colour": "Green", "Direction": 90}, {}, {}, {"Type": "Wall"}, 
+            {}, {"Type": "Node", "subType": "End"}
+        ],
+
+        [
+            {"Type": "Node", "subType": "Launcher", "Colour": "Blue", "Direction": 90}, {}, {}, {"Type": "Wall", "Colour": "Blue"}, 
+            {}, {"Type": "Node", "subType": "End"}
+        ],
+
+        [
+            {"Type": "Node", "subType": "Launcher", "Colour": "Purple", "Direction": 90}, {}, {}, {"Type": "Wall"}, 
+            {}, {"Type": "Node", "subType": "End"}
+        ]
+    ]
+}

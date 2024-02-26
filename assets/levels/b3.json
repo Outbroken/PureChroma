@@ -1,0 +1,96 @@
+{
+    "levelName": "Secondary Scenarios",
+    "levelOrder": "Beginner X",
+    "levelDescription": "Choose a path",
+    "Size": 12,
+    "spawnLocation": { "x": 5, "y": 5 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 54,
+    "perfectTime": 11500,
+
+    "Layout": [
+        [
+            { "Type": "Node", "subType": "Mixer", "Colour": "Blue" }, {}, {},
+            {}, {}, {},
+            { "Type": "Wall", "Colour": "Purple"}, { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, { "Type": "Node", "subType": "Danger" },
+            {}, {}, {}
+        ],
+
+        [
+            {}, { "Type": "Wall" }, { "Type": "Node", "subType": "Resetter" },
+            { "Type": "Node", "subType": "Danger" }, { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, { "Type": "Wall" },
+            { "Type": "Wall" }, {}, { "Type": "Node", "subType": "Mixer", "Colour": "Purple" },
+            {}, { "Type": "Node", "subType": "Mixer", "Colour": "Yellow" }, {}
+        ],
+
+        [
+            {}, { "Type": "Node", "subType": "Resetter" }, { "Type": "Wall" },
+            { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, {}, {},
+            { "Type": "Wall" }, {}, { "Type": "Wall", "Colour": "Blue" },
+            { "Type": "Node", "subType": "Setter", "Colour": "Blue" }, { "Type": "Node", "subType": "Danger" }, {}
+        ],
+
+        [
+            {}, { "Type": "Node", "subType": "Danger" }, { "Type": "Node", "subType": "Setter", "Colour": "Red" },
+            { "Type": "Wall" }, { "Type": "Wall" }, {},
+            { "Type": "Wall" }, {}, { "Type": "Node", "subType": "Mixer", "Colour": "Purple" },
+            { "Type": "Node", "subType": "Danger" }, { "Type": "Node", "subType": "Mixer", "Colour": "Yellow" }, {}
+        ],
+
+        [
+            {}, { "Type": "Node", "subType": "Setter", "Colour": "Red" }, {},
+            { "Type": "Wall" }, { "Type": "Wall" }, {},
+            { "Type": "Wall", "Colour": "Blue" }, {}, {},
+            {}, {}, {}
+        ],
+
+        [
+            {}, { "Type": "Wall" }, {},
+            {}, {}, {},
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall" }, { "Type": "Wall", "Colour": "Green" }
+        ],
+
+        [
+            { "Type": "Wall", "Colour": "Green" }, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Wall" }, { "Type": "Wall", "Colour": "Red" }, { "Type": "Wall" },
+            { "Type": "Node", "subType": "End" }, {}, { "Type": "Wall", "Colour": "Green" },
+            {}, { "Type": "Wall", "Colour": "Orange" }, {}
+        ],
+
+        [
+            { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, {}, {},
+            {}, {}, { "Type": "Wall" },
+            {}, { "Type": "Node", "subType": "Danger" }, { "Type": "Wall", "Colour": "Green" },
+            {}, { "Type": "Wall", "Colour": "Orange" }, {}
+        ],
+
+        [
+            { "Type": "Node", "subType": "Danger" }, { "Type": "Node", "subType": "Mixer", "Colour": "Purple" }, { "Type": "Wall", "Colour": "Red" },
+            { "Type": "Node", "subType": "Mixer", "Colour": "Purple" }, {}, { "Type": "Wall" },
+            { "Type": "Wall", "Colour": "Orange" }, { "Type": "Wall", "Colour": "Orange" }, { "Type": "Node", "subType": "Resetter" },
+            {}, { "Type": "Wall", "Colour": "Orange" }, {}
+        ],
+
+        [
+            {}, {}, { "Type": "Node", "subType": "Setter", "Colour": "Red" },
+            { "Type": "Node", "subType": "Danger" }, {}, { "Type": "Wall" },
+            {}, {}, {},
+            {}, { "Type": "Wall", "Colour": "Orange" }, {}
+        ],
+
+        [
+            {}, { "Type": "Node", "subType": "Mixer", "Colour": "Yellow" }, { "Type": "Node", "subType": "Danger" },
+            { "Type": "Node", "subType": "Mixer", "Colour": "Yellow" }, {}, { "Type": "Wall" },
+            { "Type": "Wall", "Colour": "Green" }, { "Type": "Wall", "Colour": "Green" }, { "Type": "Wall", "Colour": "Green" },
+            { "Type": "Wall", "Colour": "Green" }, { "Type": "Node", "subType": "Resetter" }, {}
+        ],
+
+        [
+            {}, {}, {},
+            {}, {}, { "Type": "Wall", "Colour": "Orange" },
+            {}, {}, {},
+            {}, {}, {}
+        ]
+    ]
+}
