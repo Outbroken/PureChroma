@@ -150,7 +150,7 @@ function IncrementStarCount(level, reason) {
 
     starCount += 1;
 
-    var starIcon = "<img id='StarCount_Image' src='/assets/images/ActiveStar.png'></img>"
+    var starIcon = "<img id='StarCount_Image' src='assets/images/ActiveStar.png'></img>"
     document.getElementById("StarCount").innerHTML = starIcon + starCount + "/" + (levelNames.length * 3);
 
 }
@@ -811,7 +811,7 @@ document.getElementById("RetryButton").addEventListener("mouseup", (ev) => Level
 document.getElementById("ReturnToMenuButton").addEventListener("mouseup", (ev) => ReturnToMenu());
 
 Colour_Import();
-document.getElementById("StarCount").innerHTML = "<img id='StarCount_Image' src='/assets/images/ActiveStar.png'></img>0/" + (levelNames.length * 3);
+document.getElementById("StarCount").innerHTML = "<img id='StarCount_Image' src='assets/images/ActiveStar.png'></img>0/" + (levelNames.length * 3);
 
 // MINOR BUG: Setting node colour to black makes it impossible to see the outline
 
