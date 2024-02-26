@@ -2,7 +2,7 @@
 
 const levelsFolder = './assets/levels/';
 const colourPath = "./assets/colours.json";
-const imagesFolder = './assets/images/';
+const imagesFolder = 'assets/images/';
 
 const levelNames = [
     "t1",
@@ -41,16 +41,6 @@ var inGame = false;
 var resetDeathMessageTimeout;
 
 // Functions
-
-function playSound(soundName) {
-
-    var audio = new Audio('/assets/sounds/' + soundName + '.mp3');
-    audio.volume = 0.1;
-    audio.play();
-
-}
-
-
 
 function Interface_UpdateMoveCount(Moves, perfectMoveCount) {
 
