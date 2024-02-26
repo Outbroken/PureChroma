@@ -166,11 +166,11 @@ function Interface_UpdateStars() {
     document.getElementById("LevelComplete_Star1Label").innerHTML = "Moves (" + movesMade + " / " + Level.perfectMoveCount + ")";
 
     if (movesMade > Level.perfectMoveCount) {
-        document.getElementById("LevelComplete_Star1").src = "/assets/images/InactiveStar.png";
+        document.getElementById("LevelComplete_Star1").src = "assets/images/InactiveStar.png";
         document.getElementById("LevelComplete_Star1").style.opacity = 0.6;
         document.getElementById("LevelComplete_Star1Label").style.color = "#ffffff50";
     } else {
-        document.getElementById("LevelComplete_Star1").src = "/assets/images/ActiveStar.png";
+        document.getElementById("LevelComplete_Star1").src = "assets/images/ActiveStar.png";
         document.getElementById("LevelComplete_Star1").style.opacity = 1;
         document.getElementById("LevelComplete_Star1Label").style.color = "#36ce31";
 
@@ -185,11 +185,11 @@ function Interface_UpdateStars() {
     document.getElementById("LevelComplete_Star3Label").innerHTML = "Time (" + formattedTimeDifference + " / " + formattedPerfectTime + ")";
 
     if (timeDifference > Level.perfectTime) {
-        document.getElementById("LevelComplete_Star3").src = "/assets/images/InactiveStar.png";
+        document.getElementById("LevelComplete_Star3").src = "assets/images/InactiveStar.png";
         document.getElementById("LevelComplete_Star3").style.opacity = 0.6;
         document.getElementById("LevelComplete_Star3Label").style.color = "#ffffff50";
     } else {
-        document.getElementById("LevelComplete_Star3").src = "/assets/images/ActiveStar.png";
+        document.getElementById("LevelComplete_Star3").src = "assets/images/ActiveStar.png";
         document.getElementById("LevelComplete_Star3").style.opacity = 1;
         document.getElementById("LevelComplete_Star3Label").style.color = "#36ce31";
 
