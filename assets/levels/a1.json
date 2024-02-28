@@ -1,7 +1,7 @@
 {
     "levelName": "Gate of Misfortune",
     "levelOrder": "Advanced 1",
-    "levelDescription": "Unlock gates by becoming the same colour",
+    "levelDescription": "Gates stay unlocked after changing colour",
     "Size": 5,
     "spawnLocation": { "x": 0, "y": 2 },
     "backgroundColour": "White",

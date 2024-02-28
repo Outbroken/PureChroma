@@ -1,42 +1,57 @@
 {
-    "levelName": "Lavish Launchers",
+    "levelName": "Inception",
     "levelOrder": "Advanced 2",
-    "levelDescription": "Launchers go through walls of their colour",
-    "Size": 6,
-    "spawnLocation": { "x": 1, "y": 2 },
+    "levelDescription": "Everything is in place.. Be prepared",
+    "Size": 5,
+    "spawnLocation": { "x": 2, "y": 2 },
     "backgroundColour": "White",
-    "perfectMoveCount": 10,
-    "perfectTime": 3000,
+    "perfectMoveCount": 9,
+    "perfectTime": 4000,
 
     "Layout": [
         [
-            {"Type": "Node", "subType": "Launcher", "Colour": "Red", "Direction": 90}, {}, {}, {"Type": "Wall"}, 
-            {}, {"Type": "Node", "subType": "End"}
+            { "Type": "Node", "subType": "End" }, { "Type": "Wall", "Colour": "Red" }, { "Type": "Wall", "Colour": "Red" }, 
+            { "Type": "Wall", "Colour": "Red" }, { "Type": "Node", "subType": "End" }
         ],
 
         [
-            {"Type": "Node", "subType": "Launcher", "Colour": "Orange", "Direction": 90}, {}, {}, {"Type": "Wall", "Colour": "Yellow"}, 
-            {}, {"Type": "Node", "subType": "End"}
+            { "Type": "Wall", "Colour": "Red" }, { "Type": "Node", "subType": "Portal", "Location": "a" }, {}, 
+            { "Type": "Node", "subType": "Portal", "Location": "a" }, { "Type": "Wall", "Colour": "Red" }
         ],
 
         [
-            {"Type": "Node", "subType": "Launcher", "Colour": "Yellow", "Direction": 90}, {}, {}, {"Type": "Wall", "Colour": "Red"}, 
-            {}, {"Type": "Node", "subType": "End"}
+            { "Type": "Wall", "Colour": "Red" }, {}, {}, {}, { "Type": "Wall", "Colour": "Red" }
         ],
 
         [
-            {"Type": "Node", "subType": "Launcher", "Colour": "Green", "Direction": 90}, {}, {}, {"Type": "Wall"}, 
-            {}, {"Type": "Node", "subType": "End"}
+            { "Type": "Wall", "Colour": "Red" }, { "Type": "Node", "subType": "Portal", "Location": "a" }, {}, 
+            { "Type": "Node", "subType": "Portal", "Location": "a" }, { "Type": "Wall", "Colour": "Red" }
         ],
 
         [
-            {"Type": "Node", "subType": "Launcher", "Colour": "Blue", "Direction": 90}, {}, {}, {"Type": "Wall", "Colour": "Blue"}, 
-            {}, {"Type": "Node", "subType": "End"}
-        ],
-
-        [
-            {"Type": "Node", "subType": "Launcher", "Colour": "Purple", "Direction": 90}, {}, {}, {"Type": "Wall"}, 
-            {}, {"Type": "Node", "subType": "End"}
+            { "Type": "Node", "subType": "End" }, { "Type": "Wall", "Colour": "Red" }, { "Type": "Wall", "Colour": "Red" },
+            { "Type": "Wall", "Colour": "Red" }, { "Type": "Node", "subType": "End" }
         ]
-    ]
+    ],
+
+    "SubLevels": {
+        "a": {
+            "spawnLocation": { "x": 1, "y": 1 },
+            "Size": 3,
+
+            "Layout": [
+                [
+                    {}, { "Type": "Node", "subType": "Setter", "Colour": "Red" }, {}
+                ],
+
+                [
+                    {}, {}, {}
+                ],
+
+                [
+                    {}, { "Type": "Node", "subType": "Portal", "Location": "_" }, {}
+                ]
+            ]
+        }
+    }
 }

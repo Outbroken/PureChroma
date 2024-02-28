@@ -1,0 +1,386 @@
+{
+    "levelName": "Pure Chroma",
+    "levelOrder": "Finale",
+    "levelDescription": "One last test, take your time",
+    "Size": 5,
+    "spawnLocation": { "x": 0, "y": 2 },
+    "backgroundColour": "White",
+    "perfectMoveCount": 222,
+    "perfectTime": 60000,
+
+    "Layout": [
+        [
+            {}, {}, {}, {}, { "Type": "Node", "subType": "Portal", "Location": "a" }
+        ],
+
+        [
+            {}, { "Type": "Wall" }, { "Type": "Wall" }, 
+            { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            {}, {}, {"Type": "Node", "subType": "Gate", "Colour": "Red"}, 
+            {"Type": "Node", "subType": "Gate", "Colour": "Teal" }, { "Type": "Node", "subType": "Portal", "Location": "d" }
+        ],
+
+        [
+            { "Type": "Wall" }, { "Type": "Wall" }, {}, { "Type": "Wall" }, { "Type": "Wall" }
+        ],
+
+        [
+            { "Type": "Node", "subType": "Portal", "Location": "b" }, {}, {}, 
+            {"Type": "Node", "subType": "Gate", "Colour": "Green"}, { "Type": "Node", "subType": "Portal", "Location": "c" }
+        ]
+
+    ],
+
+    "SubLevels": {
+        "a": {
+            "spawnLocation": { "x": 0, "y": 1 },
+            "Size": 10,
+
+            "Layout": [
+                [
+                    { "Type": "Node", "subType": "Portal", "Location": "_" }, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}, {}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {}, {}, 
+                    {}, {"Type": "Wall", "Colour": "Yellow"}, {}, 
+                    {"Type": "Wall", "Colour": "White"}, {}, {}, 
+                    {}
+                ],
+
+                [
+                    {"Type": "Wall"}, {}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}, {"Type": "Wall"}, {}, 
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {}, {}, 
+                    { "Type": "Node", "subType": "Setter", "Colour": "Red" }, {"Type": "Wall"}, {}, 
+                    {}, {}, {}, 
+                    {}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, {"Type": "Wall", "Colour": "Yellow"}, 
+                    {"Type": "Wall", "Colour": "Red"},  {"Type": "Wall", "Colour": "White"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {}, {"Type": "Wall", "Colour": "White"}, 
+                    {}, {"Type": "Wall", "Colour": "White"}, {}, 
+                    {}, {}, {"Type": "Wall", "Colour": "Yellow"}, 
+                    { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }
+                ],
+
+                [
+                    {"Type": "Wall"}, {}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {}
+                ],
+
+                [
+                    {"Type": "Wall"}, {}, {"Type": "Wall", "Colour": "White"}, 
+                    {}, {}, {}, 
+                    {}, {"Type": "Wall", "Colour": "White"}, {}, {}
+                ]
+            ]
+        },
+
+        "b": {
+            "spawnLocation": { "x": 0, "y": 0 },
+            "Size": 5,
+
+            "Layout": [
+                [
+                    {}, {}, {}, 
+                    { "Type": "Node", "subType": "Portal", "Location": "b1" }, { "Type": "Wall", "Colour": "Red" }
+                ],
+        
+                [
+                    { "Type": "Node", "subType": "Gate", "Colour": "Red" }, { "Type": "Wall" }, {}, 
+                    { "Type": "Node", "subType": "Portal", "Location": "b2" }, { "Type": "Wall", "Colour": "Yellow" }
+                ],
+        
+                [
+                    { "Type": "Node", "subType": "Gate", "Colour": "Orange" }, { "Type": "Wall" }, {}, 
+                    { "Type": "Node", "subType": "Portal", "Location": "b3" }, { "Type": "Wall", "Colour": "Blue" }
+                ],
+        
+                [
+                    { "Type": "Node", "subType": "Gate", "Colour": "Yellow" }, { "Type": "Wall" }, { "Type": "Wall" }, 
+                    { "Type": "Wall" }, { "Type": "Wall" }
+                ],
+        
+                [
+                    { "Type": "Node", "subType": "Gate", "Colour": "Green" }, { "Type": "Node", "subType": "Gate", "Colour": "Blue" }, 
+                    { "Type": "Node", "subType": "Gate", "Colour": "Purple" }, { "Type": "Node", "subType": "Setter", "Colour": "Green" }, 
+                    { "Type": "Node", "subType": "Portal", "Location": "_" }
+                ]
+        
+            ]
+        },
+
+        "c": {
+            "spawnLocation": { "x": 4, "y": 4 },
+            "Size": 9,
+
+            "Layout": [
+                [
+                    {}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {}, {}, { "Type": "Node", "subType": "Mixer", "Colour": "Blue" }
+                ],
+
+                [
+                    {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}
+                ],
+
+                [
+                    {}, {}, {}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}
+                ],
+
+                [
+                    {}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}
+                ],
+
+                [
+                    {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {}, {}, {}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}
+                ],
+
+                [
+                    {}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}
+                ],
+
+                [
+                    {}, {}, {}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {}, {}, {}
+                ],
+
+                [
+                    {}, {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, 
+                    {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, {"Type": "Node", "subType": "Danger"}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}
+                ],
+
+                [
+                    { "Type": "Node", "subType": "Portal", "Location": "_" }, {}, {}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}, 
+                    {}, {"Type": "Node", "subType": "Danger"}, {}
+                ]
+            ]
+        },
+
+        "d": {
+            "spawnLocation": { "x": 0, "y": 0 },
+            "Size": 5,
+
+            "Layout": [
+                [
+                    {}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Setter", "Colour": "Blue"}, {"Type": "Node", "subType": "Setter", "Colour": "Violet"}, 
+                    {"Type": "Node", "subType": "Setter", "Colour": "Purple"}
+                ],
+
+                [
+                    {"Type": "Node", "subType": "Setter", "Colour": "White"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Setter", "Colour": "Teal"}, {"Type": "Wall"}, {"Type": "Node", "subType": "Setter", "Colour": "Magenta"}
+                ],
+
+                [
+                    {"Type": "Node", "subType": "Setter", "Colour": "Red"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Setter", "Colour": "Green"}, {"Type": "Wall"}, {"Type": "Node", "subType": "End"}
+                ],
+
+                [
+                    {"Type": "Node", "subType": "Setter", "Colour": "Vermillion"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Setter", "Colour": "Chartreuse"}, {"Type": "Wall"}, {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Node", "subType": "Setter", "Colour": "Orange"}, {"Type": "Node", "subType": "Setter", "Colour": "Amber"}, 
+                    {"Type": "Node", "subType": "Setter", "Colour": "Yellow"}, {"Type": "Wall"}, {"Type": "Wall"}
+                ]
+            ]
+        },
+        
+        "b1": {
+            "spawnLocation": { "x": 3, "y": 3 },
+            "Size": 7,
+
+            "Layout": [
+                [
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall"}, {"Type": "Wall", "Colour": "Red"}, 
+                    {"Type": "Wall", "Colour": "Red"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Portal", "Location": "b3"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, { "Type": "Node", "subType": "Portal", "Location": "b" }, 
+                    {}, {"Type": "Node", "subType": "Mixer", "Colour": "Red"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Yellow"}, { "Type": "Node", "subType": "Portal", "Location": "b2" }, {}, 
+                    {}, {}, { "Type": "Node", "subType": "Portal", "Location": "b2" }, 
+                    {"Type": "Wall", "Colour": "Yellow"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Node", "subType": "Setter", "Colour": "Red"}, 
+                    {}, {"Type": "Node", "subType": "Resetter"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Portal", "Location": "b3"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall"}, {"Type": "Wall", "Colour": "Red"}, 
+                    {"Type": "Wall", "Colour": "Red"}
+                ]
+            ]
+        },
+
+        "b2": {
+            "spawnLocation": { "x": 3, "y": 3 },
+            "Size": 7,
+
+            "Layout": [
+                [
+                    {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, {"Type": "Wall", "Colour": "Yellow"}, 
+                    {"Type": "Wall", "Colour": "Yellow"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Portal", "Location": "b1"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Yellow"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, { "Type": "Node", "subType": "Portal", "Location": "b" }, 
+                    {}, {"Type": "Node", "subType": "Mixer", "Colour": "Yellow"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Blue"}, { "Type": "Node", "subType": "Portal", "Location": "b3" }, {}, 
+                    {}, {}, { "Type": "Node", "subType": "Portal", "Location": "b3" }, 
+                    {"Type": "Wall", "Colour": "Blue"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Node", "subType": "Setter", "Colour": "Yellow"}, 
+                    {}, {"Type": "Node", "subType": "Resetter"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Portal", "Location": "b1"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Yellow"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Red"}, {"Type": "Wall"}, {"Type": "Wall", "Colour": "Yellow"}, 
+                    {"Type": "Wall", "Colour": "Yellow"}
+                ]
+            ]
+        },
+
+        "b3": {
+            "spawnLocation": { "x": 3, "y": 3 },
+            "Size": 7,
+
+            "Layout": [
+                [
+                    {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall"}, {"Type": "Wall", "Colour": "Blue"}, 
+                    {"Type": "Wall", "Colour": "Blue"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Portal", "Location": "b2"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Blue"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, { "Type": "Node", "subType": "Portal", "Location": "b" }, 
+                    {}, {"Type": "Node", "subType": "Mixer", "Colour": "Blue"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Red"}, { "Type": "Node", "subType": "Portal", "Location": "b1" }, {}, 
+                    {}, {}, { "Type": "Node", "subType": "Portal", "Location": "b1" }, 
+                    {"Type": "Wall", "Colour": "Red"}
+                ],
+
+                [
+                    {"Type": "Wall"}, {"Type": "Wall"}, {"Type": "Node", "subType": "Setter", "Colour": "Blue"}, 
+                    {}, {"Type": "Node", "subType": "Resetter"}, {"Type": "Wall"}, 
+                    {"Type": "Wall"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Node", "subType": "Portal", "Location": "b2"}, {"Type": "Wall"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Blue"}
+                ],
+
+                [
+                    {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall", "Colour": "Blue"}, {"Type": "Wall"}, 
+                    {"Type": "Wall", "Colour": "Yellow"}, {"Type": "Wall"}, {"Type": "Wall", "Colour": "Blue"}, 
+                    {"Type": "Wall", "Colour": "Blue"}
+                ]
+            ]
+        }
+    }
+}

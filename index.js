@@ -12,20 +12,24 @@ const levelNames = [
     "b2",
     "b3",
     "a1",
-    "a2"
+    "a2",
+    "x"
 ]
 
 var starLocations = {};
 var starCount = 0;
 
-var removedGates = [];
+var unlockedGates = [];
 
 
-var currentLevel = 0;
+var currentLevel = 6;
 var movesMade = 0;
 
 var Colours = {};
+
 var Level = {};
+var ActiveGrid = {};
+var GridSize = 0;
 
 var PosX = 0;
 var PosY = 0;
@@ -37,7 +41,7 @@ var timerDate = new Date(0);
 var playerColour;
 var inGame = false;
 
-
+var lastRestart = new Date(-100);
 var resetDeathMessageTimeout;
 
 // Functions
@@ -242,7 +246,7 @@ function Colour_GetContrast(ColourName) {
 
 
 
-function Tile_New(tileData, sizePercentage) {
+function Tile_New(tileData, sizePercentage, x, y) {
 
     // Create the basic tile
     var newTile = document.createElement("div");
@@ -274,6 +278,7 @@ function Tile_New(tileData, sizePercentage) {
 
     }
 
+    if (tileData.subType == "Gate" && unlockedGates[x + "/" + y]) { return; }
     
     var newTileIcon = document.createElement("img");
     newTileIcon.src = imagesFolder + tileData.subType + ".svg"
@@ -282,7 +287,7 @@ function Tile_New(tileData, sizePercentage) {
 
     if (Colours[Level.backgroundColour].invertNeutralColour == true) { newTileIcon.style.filter = "invert(100%)"}
 
-    if (tileData.subType == "Resetter" || tileData.subType == "End" || tileData.subType == "Danger" ) { return; }
+    if (tileData.subType == "Resetter" || tileData.subType == "End" || tileData.subType == "Danger" || tileData.subType == "Portal") { return; }
 
 
     var newTileBackground = document.createElement("div");
@@ -304,14 +309,14 @@ function Grid_Create() {
     for (i = 0; i < gridTiles.length; i++) { levelGrid.removeChild(gridTiles[i]); }
 
     // Calculate how big the tiles should be
-    var sizePercentage = (100 / Level.Size) + "%";
+    var sizePercentage = (100 / GridSize) + "%";
 
     // Create the tiles
-    for (x = 0; x < Level.Size; x++) 
+    for (x = 0; x < GridSize; x++) 
     {
-        for (y = 0; y < Level.Size; y++) 
+        for (y = 0; y < GridSize; y++) 
         {
-            Tile_New(Level.Layout[x][y], sizePercentage);
+            Tile_New(ActiveGrid[x][y], sizePercentage, x, y);
         }
     }
 
@@ -321,31 +326,31 @@ function Grid_Create() {
 
 function Grid_Polish() {
 
-    for (x = 0; x < Level.Size; x++) 
+    for (x = 0; x < GridSize; x++) 
     {
-        for (y = 0; y < Level.Size; y++) 
+        for (y = 0; y < GridSize; y++) 
         {
             // Detect neighbours
             var tileElement = document.getElementById(x + "/" + y);
-            if (Level.Layout[x][y].Type != "Wall") { continue; }
+            if (ActiveGrid[x][y].Type != "Wall") { continue; }
 
             tileElement.style.borderRadius = "0";
         }
     }
 
-    for (x = 0; x < Level.Size; x++) 
+    for (x = 0; x < GridSize; x++) 
     {
-        for (y = 0; y < Level.Size; y++) 
+        for (y = 0; y < GridSize; y++) 
         {
             // Detect neighbours
             var tileElement = document.getElementById(x + "/" + y);
-            if (Level.Layout[x][y].Type != "Wall") { continue; }
+            if (ActiveGrid[x][y].Type != "Wall") { continue; }
 
-            var leftNeighbourExists = (!Level.Layout[x][y - 1] || (Level.Layout[x][y - 1].Type == "Wall" && Level.Layout[x][y - 1].Colour != playerColour)) ? false : true;
-            var rightNeighbourExists = (!Level.Layout[x][y + 1] || (Level.Layout[x][y + 1].Type == "Wall" && Level.Layout[x][y + 1].Colour != playerColour)) ? false : true;
+            var leftNeighbourExists = (!ActiveGrid[x][y - 1] || (ActiveGrid[x][y - 1].Type == "Wall" && ActiveGrid[x][y - 1].Colour != playerColour)) ? false : true;
+            var rightNeighbourExists = (!ActiveGrid[x][y + 1] || (ActiveGrid[x][y + 1].Type == "Wall" && ActiveGrid[x][y + 1].Colour != playerColour)) ? false : true;
 
-            var topNeighbourExists = (!Level.Layout[x - 1] || (Level.Layout[x - 1][y].Type == "Wall" && Level.Layout[x - 1][y].Colour != playerColour)) ? false : true;
-            var bottomNeighbourExists = (!Level.Layout[x + 1] || (Level.Layout[x + 1][y].Type == "Wall" && Level.Layout[x + 1][y].Colour != playerColour)) ? false : true;
+            var topNeighbourExists = (!ActiveGrid[x - 1] || (ActiveGrid[x - 1][y].Type == "Wall" && ActiveGrid[x - 1][y].Colour != playerColour)) ? false : true;
+            var bottomNeighbourExists = (!ActiveGrid[x + 1] || (ActiveGrid[x + 1][y].Type == "Wall" && ActiveGrid[x + 1][y].Colour != playerColour)) ? false : true;
 
             // Update borders
             tileElement.style.borderRadius = "0";
@@ -409,8 +414,6 @@ function Level_ObtainLayout(levelData) {
 
 function Player_ChangeColour(newColour) {
 
-    if (playerColour == newColour) { return; }
-
     var colourHex = Colours[newColour].Hex;
     
     document.getElementById("LevelGrid").style.backgroundColor = colourHex;
@@ -446,10 +449,10 @@ function Player_Move(x, y) {
     var newY = PosY + y;
 
     // Check 1: Out of bounds?
-    if (!Level.Layout[newY] || !Level.Layout[newY][newX]) { return; }
+    if (!ActiveGrid[newY] || !ActiveGrid[newY][newX]) { return; }
 
     // Check 2: Wall in the way and we're not the same colour?
-    var newTileData = Level.Layout[newY][newX];
+    var newTileData = ActiveGrid[newY][newX];
     if (newTileData.Type == "Wall" && (newTileData.Colour != playerColour)) { return; }
     if (newTileData.subType == "Gate" && (newTileData.Colour != playerColour)) { return; }
 
@@ -483,14 +486,36 @@ function Player_Move(x, y) {
         Interface_DisplayDeathMessage("Avoid the skulls")
         Level_Restart();
 
-    } else if (newTileData.subType == "Launcher") {
+    } else if (newTileData.subType == "Portal") {
 
+        $('.Tile').remove();
+
+        if (newTileData.Location == "_") {
+
+            ActiveGrid = Level.Layout;
+            GridSize = Level.Size;
+
+            Player_Initialize(Level.spawnLocation.x, Level.spawnLocation.y, GridSize);
+            Grid_Create();
+            Grid_Polish();
+
+        } else {
+
+            var subLevel = Level.SubLevels[newTileData.Location]
+            ActiveGrid = subLevel.Layout;
+            GridSize = subLevel.Size;
+
+            Player_Initialize(subLevel.spawnLocation.x, subLevel.spawnLocation.y, GridSize);
+            Grid_Create();
+            Grid_Polish();
+        
+        }
 
     } else if (newTileData.subType == "Gate") {
 
         // Because of a check earlier, we have to be the same colour as the gate
-        Level.Layout[PosY][PosX] = {}
-        removedGates[removedGates.length] = {"x": PosX, "y": PosY, colour: newTileData.Colour }
+        ActiveGrid[PosY][PosX] = {}
+        unlockedGates[PosX + "/" + PosY] = newTileData.Colour;
 
         document.getElementById(PosY + "/" + PosX).getElementsByClassName("TileIcon")[0].remove();
         document.getElementById(PosY + "/" + PosX).getElementsByClassName("TileIconBackground")[0].remove();
@@ -511,7 +536,7 @@ function Player_Move(x, y) {
 
         } else {
 
-            Interface_DisplayDeathMessage("You can't make that")
+            Interface_DisplayDeathMessage("You can't make that colour")
 
             Level_Restart();
             return;
@@ -534,10 +559,10 @@ function Player_Move(x, y) {
 function Player_UpdateIconLocation() {
 
     var player = document.getElementById("Player");
-    var offset = (75 / Level.Size) / 6
+    var offset = (75 / GridSize) / 6
 
-    player.style.left = ((100 / Level.Size * PosX) + offset) + "%";
-    player.style.top = ((100 / Level.Size * PosY) + offset) + "%";
+    player.style.left = ((100 / GridSize * PosX) + offset) + "%";
+    player.style.top = ((100 / GridSize * PosY) + offset) + "%";
 
 }
 
@@ -569,7 +594,10 @@ function Level_Load(levelData) {
 
     // Initialize
     Level = levelData;
-    Player_Initialize(Level.spawnLocation.x, Level.spawnLocation.y, Level.Size);
+    GridSize = Level.Size;
+    ActiveGrid = levelData.Layout;
+
+    Player_Initialize(Level.spawnLocation.x, Level.spawnLocation.y, GridSize);
     movesMade = 0;
 
     // Create the grid
@@ -580,7 +608,9 @@ function Level_Load(levelData) {
 
     // User Interface    
     document.getElementById("LevelTitle").innerHTML = Level.levelOrder + ": " + Level.levelName;
-    document.getElementById("LevelHelp").innerHTML = "(?) " + Level.levelDescription;
+    if (!resetDeathMessageTimeout) {
+        document.getElementById("LevelHelp").innerHTML = "(?) " + Level.levelDescription;
+    }
     Interface_UpdateMoveCount(movesMade, Level.perfectMoveCount);
 
     document.getElementById("LevelScreen").style.visibility = "visible";
@@ -600,7 +630,7 @@ function Level_End() {
 
     // Wipe Variables
     Level = {};
-    removedGates = [];
+    unlockedGates = [];
     playerColour = null;
     PosX = 0;
     PosY = 0;
@@ -673,44 +703,22 @@ function Level_Restart() {
     // Are we in game?
     if (inGame == false) { return; }
 
-    // Restart timer
+    // Have we waited long enough
+    if (Date.now() - lastRestart < 500) { console.log("Too Fast!"); return; }
+    lastRestart = Date.now();
+
+    // Reset the level
+    $('.Tile').remove();
+
+    // Reset unlocked gates list
+    unlockedGates = [];
+
+    // Reset timer    
     Interface_EndTimer();
 
-    // Reset the players location
-    PosX = Level.spawnLocation.x;
-    PosY = Level.spawnLocation.y;
+    // Reload level
+    Level_Import(levelNames[currentLevel], Level_Load);
 
-    Player_UpdateIconLocation();
-
-    // Reset the player's colour
-    Player_ChangeColour(Level.backgroundColour);
-
-    // Reset the player's move count
-    movesMade = 0;
-    Interface_UpdateMoveCount(movesMade, Level.perfectMoveCount)
-    
-    // Reconstruct Gates
-    for (i = 0; i < removedGates.length; i++) {
-
-        var d = removedGates[i];
-
-        Level.Layout[d.y][d.x] = { "Type": "Node", "subType": "Gate", "Colour": d.colour }
-
-        var newTileIcon = document.createElement("img");
-        newTileIcon.src = imagesFolder + "Gate.svg";
-        newTileIcon.classList.add('TileIcon');
-        document.getElementById(d.y + "/" + d.x).appendChild(newTileIcon);
-
-        if (Colours[Level.backgroundColour].invertNeutralColour == true) { newTileIcon.style.filter = "invert(100%)"}
-
-        var newTileBackground = document.createElement("div");
-        newTileBackground.classList.add('TileIconBackground');
-        newTileBackground.style.backgroundColor = Colours[d.colour].Hex;   
-        document.getElementById(d.y + "/" + d.x).appendChild(newTileBackground);
-
-    }
-
-    removedGates = [];
 }
  
 
@@ -747,6 +755,11 @@ function ReturnToMenu() {
 
 }
 
+
+function CreditsButtonReleased() {
+    document.getElementById("TitleScreen").style.visibility = "collapse";
+    document.getElementById("CreditsScreen").style.visibility = "visible";
+}
 
 // execution
 document.addEventListener("keydown", (ev) => {
@@ -799,12 +812,11 @@ document.getElementById("ContinueButton").addEventListener("mouseup", (ev) => Le
 document.getElementById("RestartButton").addEventListener("mouseup", (ev) => Level_Restart());
 document.getElementById("RetryButton").addEventListener("mouseup", (ev) => Level_Retry());
 document.getElementById("ReturnToMenuButton").addEventListener("mouseup", (ev) => ReturnToMenu());
+document.getElementById("CreditsButton").addEventListener("mouseup", (ev) => CreditsButtonReleased());
 
 Colour_Import();
 document.getElementById("StarCount").innerHTML = "<img id='StarCount_Image' src='assets/images/ActiveStar.png'></img>0/" + (levelNames.length * 3);
 
 // MINOR BUG: Setting node colour to black makes it impossible to see the outline
-
-// FEATURE: Make launchers work! Create final level!
 
 // MODERATE BUG: Star clips of the left edge of the screen when star count is 4 characters long

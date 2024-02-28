@@ -1,7 +1,7 @@
 {
     "levelName": "Secondary Scenarios",
     "levelOrder": "Beginner X",
-    "levelDescription": "Choose a path",
+    "levelDescription": "Don't make brown",
     "Size": 12,
     "spawnLocation": { "x": 5, "y": 5 },
     "backgroundColour": "White",
