@@ -17,15 +17,15 @@
         ],
 
         [
-            {}, { "Type": "Wall" }, { "Type": "Node", "subType": "Resetter" },
+            {}, { "Type": "Wall" }, { "Type": "Wall" },
             { "Type": "Node", "subType": "Danger" }, { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, { "Type": "Wall" },
             { "Type": "Wall" }, {}, { "Type": "Node", "subType": "Mixer", "Colour": "Purple" },
             {}, { "Type": "Node", "subType": "Mixer", "Colour": "Yellow" }, {}
         ],
 
         [
-            {}, { "Type": "Node", "subType": "Resetter" }, { "Type": "Wall" },
-            { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, {}, {},
+            {}, { "Type": "Wall" }, { "Type": "Wall" },
+            { "Type": "Node", "subType": "Setter", "Colour": "Yellow" }, { "Type": "Node", "subType": "Resetter" }, {},
             { "Type": "Wall" }, {}, { "Type": "Wall", "Colour": "Blue" },
             { "Type": "Node", "subType": "Setter", "Colour": "Blue" }, { "Type": "Node", "subType": "Danger" }, {}
         ],
@@ -38,7 +38,7 @@
         ],
 
         [
-            {}, { "Type": "Node", "subType": "Setter", "Colour": "Red" }, {},
+            {}, { "Type": "Node", "subType": "Setter", "Colour": "Red" }, { "Type": "Node", "subType": "Resetter" },
             { "Type": "Wall" }, { "Type": "Wall" }, {},
             { "Type": "Wall", "Colour": "Blue" }, {}, {},
             {}, {}, {}

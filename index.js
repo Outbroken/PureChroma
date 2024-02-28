@@ -22,7 +22,7 @@ var starCount = 0;
 var unlockedGates = [];
 
 
-var currentLevel = 6;
+var currentLevel = 0;
 var movesMade = 0;
 
 var Colours = {};
